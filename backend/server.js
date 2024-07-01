@@ -1,32 +1,26 @@
-import express from "express"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
 import { connectDB } from "./config/db.js";
+import foodRouter from "./routes/foodRoute.js";
 
-import foodRouter form "./routes/foodRouter.js"
-
-
-//app config
+// App configuration
 const app = express();
 const port = 4000;
 
-//middleware
-
+// Middleware
 app.use(express.json());
 app.use(cors());
 
-//DB connection
-
+// DB connection
 connectDB();
 
-//api endpoint
-
-app.use("/api/food",foodRouter)
+// API endpoints
+app.use("/api/food", foodRouter);
 
 app.get("/", (req, res) => {
-    res.send("api working")
-})
+    res.send("API is working");
+});
 
 app.listen(port, () => {
-    console.log("server is running on port", port)
-})
-
+    console.log(`Server is running on port ${port}`);
+});
